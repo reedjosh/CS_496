@@ -1,3 +1,17 @@
+# Joshua Reed
+# OSU EECS
+# CS_496 -> Web Development
+# Summer, 2017
+#
+# boats.py
+#
+# Description: Implements a restful api that tracks boats in and out of slips.
+# Uses Google App Engine as the service provider.
+#
+# Use: To run, enter "dev_appserver.py ./*". Then check the porst listed in 
+# the console. Thereafter, the page shouldu be usable at that port via a 
+# browser or rest client.
+
 from google.appengine.ext import ndb
 import webapp2
 import json

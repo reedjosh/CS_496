@@ -1,3 +1,16 @@
+# Joshua Reed
+# OSU EECS
+# CS_496 -> Web Development
+# Summer, 2017
+#
+# slips.py
+#
+# Description: Contains the slip ndb model and slip handler classes.
+#
+# Use: To run, enter "dev_appserver.py ./*". Then check the porst listed in 
+# the console. Thereafter, the page shouldu be usable at that port via a 
+# browser or rest client.
+
 from google.appengine.ext import ndb
 from google.net.proto.ProtocolBuffer import ProtocolBufferDecodeError
 import webapp2
