@@ -13,55 +13,58 @@
 
 import webapp2
 import json
+from helpers import jsonDumps, getObj
 from google.appengine.ext import ndb
 from google.net.proto.ProtocolBuffer import ProtocolBufferDecodeError
 
 class DockHandler(webapp2.RequestHandler):
+
+    def _sendErr(self, code, message):
+        self.response.status = code
+        self.response.write(message)
+        self.err=True
+
     def put(self, slip_id):
+        self.err = False
         """Dock a boat in a slip."""
         print(self.request.body)
         err = False
+
         # Attempt to get body
         try:
             body = json.loads(self.request.body)
         except ValueError:
-            self.response.status = '405 Bad Input'
-            self.response.write('Error: Body not proper JSON.')
-            err = True
-        if not err:    
-            # Try block here for google bug...
-            try:
-                boat = ndb.Key(urlsafe=body['boat_id']).get()
-            except ProtocolBufferDecodeError:
-                self.response.status = '405 Bad Input'
-                self.response.write('Error: Bad boat ID.')
-                err = True
-        if not err:    
-            # Try block here for google bug...
-            try:
-                slip = ndb.Key(urlsafe=slip_id).get()
-            except ProtocolBufferDecodeError:
-                self.response.status = '405 Bad Input'
-                self.response.write('Error: Bad slip ID.')
-                err = True
-        if not err:
-            if not slip.current_boat:
-                slip.arrival_date = body['arrival_date']
-                slip.current_boat = body['boat_id']
-                boat.at_sea = False  
-                boat.slip = slip_id  
-                slip.put()
-                boat.put()
-                # Modify the dictionaries' to link to proper urls in responses.
-                slip_dict = slip.to_dict()
-                boat_dict  = boat.to_dict()
-                slip_dict['current_boat'] = '/boats/' + body['boat_id']
-                boat_dict['slip'] = '/slips/' + slip_id  
-                self.response.write(json.dumps(slip_dict, sort_keys=True, 
-                                               indent=4))
-                self.response.write(json.dumps(boat_dict, sort_keys=True, 
-                                               indent=4))
-            else:
-                self.response.status = '403 Forbidden'
-                self.response.write('Error: Slip alread occupied.')
-                err = True
+            self._sendErr(405, 'Error: Body not proper JSON.')
+
+        # Attempt to get boat obj.
+        if not self.err:    
+            boat = getObj(body['boat_id'])
+            if not boat:
+                self._sendErr(405, 'Error: Bad boat ID.')
+        
+        # Attempt to get slip obj.
+        if not self.err:    
+            slip = getObj(slip_id)
+            if not slip:
+                self._sendErr(405, 'Error: Bad slip ID.')
+        
+        # Check if slip is occupied. 
+        if not self.err:
+            if slip.current_boat:
+                self._sendErr(403, 'Error: Slip already occupied.')
+
+        # If no errors yet, dock boat in slip.
+        if not self.err:
+            slip.arrival_date = body['arrival_date']
+            slip.current_boat = body['boat_id']
+            boat.at_sea = False  
+            boat.slip = slip_id  
+            slip.put()
+            boat.put()
+            # Modify the dictionaries' to link to proper urls in responses.
+            slip_dict = slip.to_dict()
+            boat_dict  = boat.to_dict()
+            slip_dict['current_boat'] = '/boats/' + body['boat_id']
+            boat_dict['slip'] = '/slips/' + slip_id  
+            self.response.write(jsonDumps(slip_dict))
+            self.response.write(jsonDumps(boat_dict))

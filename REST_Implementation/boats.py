@@ -15,6 +15,7 @@
 from google.appengine.ext import ndb
 import webapp2
 import json
+from helpers import jsonDumps, getObj
 
 
 class Boat(ndb.Model):
@@ -25,10 +26,7 @@ class Boat(ndb.Model):
     at_sea = ndb.BooleanProperty(required=True)
     slip = ndb.StringProperty()
 
-
-
 class BoatHandler(webapp2.RequestHandler):
-
     
     def post(self):
         """Create a Boat."""
@@ -38,7 +36,7 @@ class BoatHandler(webapp2.RequestHandler):
         new_boat.put()
         boat_dict = new_boat.to_dict()
         boat_dict['self'] = '/boats/' + new_boat.key.urlsafe()
-        self.response.write(json.dumps(boat_dict, sort_keys=True, indent=4))
+        self.response.write(jsonDumps(boat_dict))
 
     def get(self, id=None):
         """Get info about a boat or boats."""
@@ -48,7 +46,7 @@ class BoatHandler(webapp2.RequestHandler):
                 boat = ndb.Key(urlsafe=id).get()
                 boat_dict = boat.to_dict()
                 boat_dict['self'] = '/boats/' + id
-                self.response.write(json.dumps(boat_dict, sort_keys=True, indent=4))
+                self.response.write(jsonDumps(boat_dict))
             else:
                 self.response.status = "405 Bad ID";
                 self.response.write('Bad Id Provided')
@@ -61,7 +59,7 @@ class BoatHandler(webapp2.RequestHandler):
                 boat_data['self'] = '/boats/' + id
                 boat_data['id'] = id
                 boat_dicts['Boats'].append(boat_data)
-            self.response.write(json.dumps(boat_dicts, sort_keys=True, indent=4))
+            self.response.write(jsonDumps(boat_dicts))
 
     def patch(self, id=None):
         """Edit a Boat."""
@@ -77,7 +75,7 @@ class BoatHandler(webapp2.RequestHandler):
                     boat.type = boat_data['type']
                 boat.put()
                 boat_dict = boat.to_dict()
-                self.response.write(json.dumps(boat_dict, sort_keys=True, indent=4))
+                self.response.write(jsonDumps(boat_dict))
             else:
                 self.response.status = "405 Bad Id";
                 self.response.write('Error: Bad Id Provided')

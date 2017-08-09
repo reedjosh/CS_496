@@ -15,6 +15,7 @@ from google.appengine.ext import ndb
 from google.net.proto.ProtocolBuffer import ProtocolBufferDecodeError
 import webapp2
 import json
+from helpers import jsonDumps
 
 class Slip(ndb.Model):
     """Models a slip that can store a boat."""
@@ -53,7 +54,7 @@ class SlipHandler(webapp2.RequestHandler):
             new_slip.put()
             slip_dict = new_slip.to_dict()
             slip_dict['self'] = '/slip/' + new_slip.key.urlsafe()
-            self.response.write(json.dumps(slip_data))
+            self.response.write(jsonDumps(slip_data))
         else:
             self.response.status = "403 Forbidden"
             self.response.write('Error: A slip of that number exists.')
@@ -66,7 +67,8 @@ class SlipHandler(webapp2.RequestHandler):
                 slip = slip_key.get()
                 slip_dict = slip.to_dict()
                 slip_dict['self'] = '/slips/' + id
-                self.response.write(json.dumps(slip_dict, sort_keys=True, indent=4))
+                self.response.write(jsonDumps(slip_dict))
+
         else: # respond with a list of slips
             slips = Slip.query().fetch()
             slip_dicts = {'Slips':[]}
@@ -76,7 +78,7 @@ class SlipHandler(webapp2.RequestHandler):
                 slip_data['self'] = '/slips/' + id
                 slip_data['id'] = id
                 slip_dicts['Slips'].append(slip_data)
-            self.response.write(json.dumps(slip_dicts, sort_keys=True, indent=4))
+            self.response.write(jsonDumps(slip_dicts))
 
     def patch(self, id=None):
         """Edit a slip."""
@@ -88,7 +90,7 @@ class SlipHandler(webapp2.RequestHandler):
                     slip.number = slip_data['number']
                 slip.put()
                 slip_dict = slip.to_dict()
-                self.response.write(json.dumps(slip_dict, sort_keys=True, indent=4))
+                self.response.write(jsonDumps(slip_dict))
             else:
                 self.response.status = "405 Bad Id";
                 self.response.write('Error: Bad Id Provided')
