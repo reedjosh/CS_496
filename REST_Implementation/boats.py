@@ -27,38 +27,73 @@ class Boat(ndb.Model):
     slip = ndb.StringProperty()
 
 class BoatHandler(webapp2.RequestHandler):
+
+
+    def __init__(self, *args, **kwargs):
+        """Template from the super class's init and add err flag."""
+        self.err = False
+        super(BoatHandler, self).__init__(*args, **kwargs)
+
     
+    def _sendErr(self, code, message):
+        """Send an error code and set the err flag."""
+        self.response.status = code
+        self.response.write(message)
+        self.err=True
+
+
     def post(self):
         """Create a Boat."""
-        boat_data = json.loads(self.request.body)
-        boat_data['at_sea'] = True
-        new_boat = Boat(**boat_data)
-        new_boat.put()
-        boat_dict = new_boat.to_dict()
-        boat_dict['self'] = '/boats/' + new_boat.key.urlsafe()
-        self.response.write(jsonDumps(boat_dict))
+        
+        # Attempt to get body
+        try:
+            body = json.loads(self.request.body)
+        except ValueError:
+            self._sendErr(405, 'Error: Body not proper JSON.')
+
+        if not self.err:
+            # Set the boat data to be at sea...
+            body['at_sea'] = True
+
+            # Create and store boat...
+            new_boat = Boat(**body)
+            new_boat.put()
+
+            # Set boat's self url...
+            boat_dict = new_boat.to_dict()
+            boat_dict['self'] = '/boats/' + new_boat.key.urlsafe()
+
+            # Responde to request with JSON boat data...
+            self.response.write(jsonDumps(boat_dict))
+
 
     def get(self, id=None):
         """Get info about a boat or boats."""
+
+        # If an id was provided, attempt to return the associated boat's data.
+        # Else return the data for all boats.
         if id:
-            boat = ndb.Key(urlsafe=id).get()
+            boat = getObj(id)
             if boat:
-                boat = ndb.Key(urlsafe=id).get()
                 boat_dict = boat.to_dict()
                 boat_dict['self'] = '/boats/' + id
                 self.response.write(jsonDumps(boat_dict))
             else:
-                self.response.status = "405 Bad ID";
-                self.response.write('Bad Id Provided')
-        else: # respond with a list of boats
+                sendErr(405, "Error: Bad boat id provided.")
+        else:
+            # Get all boats.
             boats = Boat.query().fetch()
+
+            # Convert boats to a dictionary with key Boats...
             boat_dicts = {'Boats':[]}
-            for boat in boats: # Convert boats to a dictionary.
+            for boat in boats: 
                 id = boat.key.urlsafe()
                 boat_data = boat.to_dict()
                 boat_data['self'] = '/boats/' + id
                 boat_data['id'] = id
                 boat_dicts['Boats'].append(boat_data)
+
+            # Respond with data of Boats.
             self.response.write(jsonDumps(boat_dicts))
 
     def patch(self, id=None):

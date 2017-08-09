@@ -50,7 +50,7 @@ class DockHandler(webapp2.RequestHandler):
         
         # Check if slip is occupied. 
         if not self.err:
-            if slip.current_boat:
+            if slip.current_boat != 'null':
                 self._sendErr(403, 'Error: Slip already occupied.')
 
         # If no errors yet, dock boat in slip.
