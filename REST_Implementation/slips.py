@@ -15,7 +15,7 @@ from google.appengine.ext import ndb
 from google.net.proto.ProtocolBuffer import ProtocolBufferDecodeError
 import webapp2
 import json
-from helpers import jsonDumps
+from helpers import jsonDumps, getObj
 
 class Slip(ndb.Model):
     """Models a slip that can store a boat."""
@@ -23,91 +23,124 @@ class Slip(ndb.Model):
     current_boat = ndb.StringProperty(required=True) 
     arrival_date = ndb.StringProperty(required=True) 
 
+    
+    def toJsonStr(self):
+        """Converts a slip to a pretty JSON string for responses."""
+        id = self.key.urlsafe()
+        slip_data = self.to_dict()
+        slip_data['id'] = id
+        slip_data['self'] = '/slips/' + id
+        if slip_data['current_boat'] != 'null':
+            slip_data['boat_link'] = '/boats/' + slip_data['current_boat']
+        return jsonDumps(slip_data)
+        
+
 
 class SlipHandler(webapp2.RequestHandler):
-    def _getSlip(self, id):
-        """A slip getter that submits error if needed."""
-        if id:
-            try: slip = ndb.Key(urlsafe=id).get()
-            except (TypeError, ValueError, ProtocolBufferDecodeError):
-                slip = None
-                self.response.status = "405 Bad Id";
-                self.response.write('Error: Bad Id Provided')
-        return slip 
+
+
+    def __init__(self, *args, **kwargs):
+        """Template from the super class's init and add err flag."""
+        self.err = False
+        super(SlipHandler, self).__init__(*args, **kwargs)
+
+
+    def _sendErr(self, code, message):
+        """Send an error code and set the err flag."""
+        self.response.status = code
+        self.response.write(message)
+        self.err=True
+
 
     def post(self, id=None):
         """Create a slip."""
-        try: slip_data = json.loads(self.request.body)
-        except: slip_data = None
+
+        # Get the body of the post.
+        try: body = json.loads(self.request.body)
+        except: self._sendErr(405, "Error: Couldn't get body data")
+
+        # Prevent posting with an id.
         if id:
-            print(id)
-            print(id)
-            self.response.status = "403 Forbidden"
-            self.response.write('Error: A slip cannot be posted with an id.')
-        elif not slip_data:
-                self.response.status = "405 Bad Input";
-                self.response.write('Error: No body provided with post.')
-        elif Slip.query(Slip.number == slip_data['number']).get() is None: 
-            slip_data['arrival_date'] = "null";
-            slip_data['current_boat'] = "null";
-            new_slip = Slip(**slip_data)
+            self._sendErr(403, "Error: A slip cannot be posted with an id.")
+
+        # Prevent duplicate numbered slips...
+        if Slip.query(Slip.number == body['number']).get(): 
+            self._sendErr(403, "Error: A slip of that numer already exists.")
+
+        # If no errors, create the slip...
+        if not self.err:
+            body['arrival_date'] = "null";
+            body['current_boat'] = "null";
+            print("hello")
+            print(body)
+            new_slip = Slip(**body)
             new_slip.put()
-            slip_dict = new_slip.to_dict()
-            slip_dict['self'] = '/slip/' + new_slip.key.urlsafe()
-            self.response.write(jsonDumps(slip_data))
-        else:
-            self.response.status = "403 Forbidden"
-            self.response.write('Error: A slip of that number exists.')
+            self.response.write(new_slip.toJsonStr())
+
 
     def get(self, id=None):
+        """Get either a specific slip, or a list of all slips."""
         if id:
-            slip = self._getSlip(id)
-            if slip:
-                slip_key = ndb.Key(urlsafe=id)
-                slip = slip_key.get()
-                slip_dict = slip.to_dict()
-                slip_dict['self'] = '/slips/' + id
-                self.response.write(jsonDumps(slip_dict))
 
-        else: # respond with a list of slips
+            # Attempt to get slip with given id.
+            slip = getObj(id)
+
+            # Send an error if no slip found with said id.
+            if not slip: 
+                self.sendErr(405, "Error: Bad slip id.")
+
+            # If no error set, respond with slip info.
+            if not self.err:
+                self.response.write(slip.toJsonStr())
+        else:
+            # Get all slips.
             slips = Slip.query().fetch()
+
+            # Populate the list of slips.
             slip_dicts = {'Slips':[]}
             for slip in slips: # Convert slips to a dictionary.
-                id = slip.key.urlsafe()
-                slip_data = slip.to_dict()
-                slip_data['self'] = '/slips/' + id
-                slip_data['id'] = id
-                slip_dicts['Slips'].append(slip_data)
+                slip_dicts['Slips'].append(json.loads(slip.toJsonStr()))
+
+            # Send all slips.
             self.response.write(jsonDumps(slip_dicts))
 
     def patch(self, id=None):
         """Edit a slip."""
-        if id:
-            slip = ndb.Key(urlsafe=id).get()
-            if slip:
-                slip_data = json.loads(self.request.body)
-                if 'number' in slip_data:
-                    slip.number = slip_data['number']
-                slip.put()
-                slip_dict = slip.to_dict()
-                self.response.write(jsonDumps(slip_dict))
-            else:
-                self.response.status = "405 Bad Id";
-                self.response.write('Error: Bad Id Provided')
-        else:
-            self.response.status = "403 No ID";
-            self.response.write('Error: Id Required for Patch')
+        # Enforce id requriement.
+        if not id:
+            self._sendErr(403, 'Error: Id Required for Patch')
+        
+        # If no error, attempt to get slip with given id, send error if not.
+        if not self.err:
+            slip = getObj(id)
+            if not slip: 
+                self.sendErr(405, "Error: Bad slip id.")
+
+        # If no errors, get the body of the post.
+        if not self.err:
+            try: body = json.loads(self.request.body)
+            except: self._sendErr(405, "Error: Couldn't get body data")
+
+        # If no errors, then patch using body data.
+        if not self.err:
+            if 'number' in body:
+                slip.number = body['number']
+            slip.put()
+            self.response.write(slip.toJsonStr())
 
     def delete(self, id=None):
         """Delete a slip."""
-        if id:
-            slip = ndb.Key(urlsafe=id).get()
-            if slip:
-                slip.key.delete()
-                self.response.write('Slip Deleted')
-            else:
-                self.response.status = "405 Bad Id";
-                self.response.write('Error: Bad Id Provided')
-        else:
-            self.response.status = "403 No ID";
-            self.response.write('Error: Id Required for Delete')
+        # Enforce id requriement.
+        if not id:
+            self._sendErr(403, 'Error: Id Required for Delete.')
+
+        # If no error, attempt to get slip with given id, send error if not.
+        if not self.err:
+            slip = getObj(id)
+            if not slip: 
+                self.sendErr(405, "Error: Bad slip id.")
+
+        # If no errors, delete the slip.
+        if not self.err:
+            slip.key.delete()
+            self.response.write('Slip Deleted')
