@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+        <nav>      
+          <a href="index.html">Home</a> | <a href="products.html">Products</a> | <a href="about.html">About</a>
+        </nav>
+        {% block content %}
+        <section>
+        <p>Welcome to ABC Inc.<br>
+        Home of Good Stuff</p>     
+        </section>
+        {% endblock %}
+        <footer>
+          <a href="index.html">Home</a> | <a href="products.html">Products</a> | <a href="about.html">About</a>
+        </footer>
+        </div>
+    </body>
+</html>
