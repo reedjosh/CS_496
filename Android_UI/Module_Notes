@@ -1,0 +1,46 @@
+Define:
+    Intents: An abstract description of an operation to be performed. Practically, it is a passive data structure that holds a description of an action to be performed.
+    Activities: Typically fullscreen, an activity is a single focused task a user can perform.
+    Fragments: A portion of an activity that has its own life cycle. Typically a sub of an activity.
+    Resources: Generally, data... Things like text for buttons, item descriptions, images, and color schemes. These are helpful because they allow easy replacement.
+    Manifests: The main app info file.
+    TextView: Displays text and optionally allows a user to modify the text.
+
+What does the file and directory layout of an Android App look like?
+
+    Most of the files are in the /app/src/main directory.
+
+    There will be a Java directory.
+    
+    AndroidManifest.xml -> Basically the project/app config file.
+
+    res -> Where all of the resources go.
+    
+        res/layout
+        res/values
+        res/drawable
+        res/drawable-hdpi
+
+    [X]Activity.java -> the Java file responsible for X activity.
+    
+    layout_x.xml -> the layout for activity X.
+
+How are Android layouts set up? Using XML. Typically in the form of Lists, Grids, and Relative Layouts.
+
+How does code interact with an Android layout?
+
+
+
+Some Android libraries:
+    android.*
+        app: the application model.
+        content: allows for content access, publishing, and inter-app communication.
+        database: used to access data, and includes SQLite.
+        opengl: a 3D graphics rendering API.
+        os: standard os services including: messages, system services, and inter-process communication.
+        text: simply text manipulation and rendering.
+        view: UI buiding blocks.
+        widget: Pre-Built UI components like buttons, labels, list views, layout managers, and radio buttons.
+        webkit: Designed to allow web browsing capabilities from applications.
+
+Dalvik Virtual Machine: A VM to run Java apps on Android that is optimized for this application.

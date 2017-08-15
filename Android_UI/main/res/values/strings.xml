@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My App</string>
+    <string name="title_activity_vertical">VerticalActivity</string>
+    <string name="title_activity_horizontal">activity_horizontal</string>
+</resources>

@@ -72,7 +72,7 @@ class OauthHandler(webapp2.RequestHandler):
 
         # Google Plus URL (https required).
         header = {'Authorization': 'Bearer ' + token['access_token']}
-        response = urlfetch.fetch(url=GPLUS_URL, headers=header)
+        response = urlfetch.fetch(GPLUS_URL, headers=header)
         
         gplus_data = json.loads(response.content)
     
