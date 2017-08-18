@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+    <TextView
+        android:id="@+id/lat_tv"
+        android:layout_width="120dp"
+        android:text="Temp"
+        android:textSize="22sp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lon_tv"
+        android:layout_width="120dp"
+        android:text="Temp"
+        android:textSize="22sp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
