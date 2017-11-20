@@ -1,0 +1,643 @@
+{
+	"id": "c7639515-78b8-4022-b792-d0fca6aff410",
+	"name": "Boats_and_Slips",
+	"allTests": [],
+	"timestamp": "2017-08-25T19:05:01.170Z",
+	"collection_id": "af9dfd45-b15e-dc96-299d-29c05ec30743",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "50ee91b6-67bb-49f2-e5ae-273d2edd0783",
+	"data": [],
+	"delay": "50",
+	"count": 1,
+	"collection": {
+		"id": "af9dfd45-b15e-dc96-299d-29c05ec30743",
+		"name": "Boats_and_Slips",
+		"description": "",
+		"order": [
+			"b4b9c755-bca8-8a85-65fe-86d13153a294",
+			"8ff7b3fe-4e3b-f838-bc49-39aefb35d2b4",
+			"bb3595a1-0b75-6f87-e962-0448aa8a2afd",
+			"8c562a41-c730-1518-056b-9ff9924961a1",
+			"9f0e30ce-59f1-ca0a-2e95-5a09c0a09332",
+			"4c46cfca-28d9-18a1-3f17-ca6a4f8a2661",
+			"d009d966-4f6a-313e-a713-4a9d1e37ccb0",
+			"b99b2b8c-e8e2-b9a8-d546-e83b141629ba",
+			"359b6917-cde7-0970-8174-ff8e33f6c0d1",
+			"609709eb-7c81-eed3-f502-e803b4f87cea",
+			"b3614edd-7912-a6a2-2800-2136d950637f",
+			"ffca32f5-5f84-99fb-c3cd-aa1b9df1e6a0",
+			"9a5a371a-3b1e-bc60-6237-8007c438f90c"
+		],
+		"folders": [],
+		"folders_order": [],
+		"timestamp": 1502252177367,
+		"synced": false,
+		"remote_id": 0,
+		"owner": "2362387",
+		"sharedWithTeam": false,
+		"subscribed": false,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"createdAt": 1502252177367,
+		"updatedAt": "2017-08-25T17:53:21.831Z",
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {}
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Create Seawitch",
+			"id": "b4b9c755-bca8-8a85-65fe-86d13153a294",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Body has at_sea": true,
+				"Body has length": true,
+				"Body has type": true,
+				"Successful POST request": true
+			},
+			"testPassFailCounts": {
+				"Body has at_sea": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body has length": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body has type": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"268"
+			],
+			"allTests": [
+				{
+					"Body has at_sea": true,
+					"Body has length": true,
+					"Body has type": true,
+					"Successful POST request": true
+				}
+			],
+			"time": "268",
+			"totalRequestTime": "268",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Mermadian",
+			"id": "8ff7b3fe-4e3b-f838-bc49-39aefb35d2b4",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Body matches string": true,
+				"Successful POST request": true
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"133"
+			],
+			"allTests": [
+				{
+					"Body matches string": true,
+					"Successful POST request": true
+				}
+			],
+			"time": "133",
+			"totalRequestTime": "133",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Slip Number 1",
+			"id": "bb3595a1-0b75-6f87-e962-0448aa8a2afd",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Successful request": true
+			},
+			"testPassFailCounts": {
+				"Successful request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"201"
+			],
+			"allTests": [
+				{
+					"Successful request": true
+				}
+			],
+			"time": "201",
+			"totalRequestTime": "201",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Slip Number 2",
+			"id": "8c562a41-c730-1518-056b-9ff9924961a1",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"152"
+			],
+			"allTests": [
+				{
+					"Body matches string": true
+				}
+			],
+			"time": "152",
+			"totalRequestTime": "152",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Slip Number 2 But Fail",
+			"id": "9f0e30ce-59f1-ca0a-2e95-5a09c0a09332",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden",
+				"detail": {
+					"name": "Forbidden",
+					"detail": "The request was a legal request, but the server is refusing to respond to it. Unlike a 401 Unauthorized response, authenticating will make no difference."
+				}
+			},
+			"tests": {
+				"POST request fail as duplicate slip number": true
+			},
+			"testPassFailCounts": {
+				"POST request fail as duplicate slip number": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"87"
+			],
+			"allTests": [
+				{
+					"POST request fail as duplicate slip number": true
+				}
+			],
+			"time": "87",
+			"totalRequestTime": "87",
+			"iterationResults": {}
+		},
+		{
+			"name": "Patch Slip 2 -> 3",
+			"id": "4c46cfca-28d9-18a1-3f17-ca6a4f8a2661",
+			"url": "https://rest-boats-and-slips.appspot.com/slips/ahZzfnJlc3QtYm9hdHMtYW5kLXNsaXBzchELEgRTbGlwGICAgIC8n9sIDA",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				"138"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "138",
+			"totalRequestTime": "138",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Slip Number 2 Again",
+			"id": "d009d966-4f6a-313e-a713-4a9d1e37ccb0",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				"248"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "248",
+			"totalRequestTime": "248",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get all boats.",
+			"id": "b99b2b8c-e8e2-b9a8-d546-e83b141629ba",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Body contains Boats key": true
+			},
+			"testPassFailCounts": {
+				"Body contains Boats key": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"88"
+			],
+			"allTests": [
+				{
+					"Body contains Boats key": true
+				}
+			],
+			"time": "88",
+			"totalRequestTime": "88",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get All Slips",
+			"id": "359b6917-cde7-0970-8174-ff8e33f6c0d1",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Body contains Slips key": true
+			},
+			"testPassFailCounts": {
+				"Body contains Slips key": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"88"
+			],
+			"allTests": [
+				{
+					"Body contains Slips key": true
+				}
+			],
+			"time": "88",
+			"totalRequestTime": "88",
+			"iterationResults": {}
+		},
+		{
+			"name": "Delete All Boats",
+			"id": "ffca32f5-5f84-99fb-c3cd-aa1b9df1e6a0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {},
+			"times": [
+				"139",
+				"178"
+			],
+			"allTests": [
+				{},
+				null
+			],
+			"time": "178",
+			"totalRequestTime": "139178",
+			"iterationResults": {}
+		},
+		{
+			"name": "Delete All Slips",
+			"id": "9a5a371a-3b1e-bc60-6237-8007c438f90c",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {},
+			"times": [
+				"206",
+				"148",
+				"161"
+			],
+			"allTests": [
+				{},
+				null,
+				null
+			],
+			"time": "161",
+			"totalRequestTime": "206148161",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 11,
+	"totalFail": 0,
+	"totalTime": 2235,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Create Seawitch",
+			"id": "b4b9c755-bca8-8a85-65fe-86d13153a294",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Body has at_sea": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body has length": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body has type": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Create Mermadian",
+			"id": "8ff7b3fe-4e3b-f838-bc49-39aefb35d2b4",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Create Slip Number 1",
+			"id": "bb3595a1-0b75-6f87-e962-0448aa8a2afd",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Successful request": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Create Slip Number 2",
+			"id": "8c562a41-c730-1518-056b-9ff9924961a1",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Create Slip Number 2 But Fail",
+			"id": "9f0e30ce-59f1-ca0a-2e95-5a09c0a09332",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden",
+				"detail": {
+					"name": "Forbidden",
+					"detail": "The request was a legal request, but the server is refusing to respond to it. Unlike a 401 Unauthorized response, authenticating will make no difference."
+				}
+			},
+			"testPassFailCounts": {
+				"POST request fail as duplicate slip number": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Patch Slip 2 -> 3",
+			"id": "4c46cfca-28d9-18a1-3f17-ca6a4f8a2661",
+			"url": "https://rest-boats-and-slips.appspot.com/slips/ahZzfnJlc3QtYm9hdHMtYW5kLXNsaXBzchELEgRTbGlwGICAgIC8n9sIDA",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		},
+		{
+			"name": "Create Slip Number 2 Again",
+			"id": "d009d966-4f6a-313e-a713-4a9d1e37ccb0",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		},
+		{
+			"name": "Get all boats.",
+			"id": "b99b2b8c-e8e2-b9a8-d546-e83b141629ba",
+			"url": "https://rest-boats-and-slips.appspot.com/boats",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Body contains Boats key": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Get All Slips",
+			"id": "359b6917-cde7-0970-8174-ff8e33f6c0d1",
+			"url": "https://rest-boats-and-slips.appspot.com/slips",
+			"time": "2017-08-25T19:05:01.170Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Body contains Slips key": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Delete All Boats",
+			"id": "ffca32f5-5f84-99fb-c3cd-aa1b9df1e6a0",
+			"url": "https://rest-boats-and-slips.appspot.com/boats/ahZzfnJlc3QtYm9hdHMtYW5kLXNsaXBzchELEgRCb2F0GICAgICd7o8KDA",
+			"time": "178",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		},
+		{
+			"name": "Delete All Slips",
+			"id": "9a5a371a-3b1e-bc60-6237-8007c438f90c",
+			"url": "https://rest-boats-and-slips.appspot.com/slips/ahZzfnJlc3QtYm9hdHMtYW5kLXNsaXBzchELEgRTbGlwGICAgIDAiJ0KDA",
+			"time": "161",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		}
+	],
+	"synced": false
+}

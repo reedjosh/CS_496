@@ -1,0 +1,38 @@
+#!/bin/bash
+
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Before we begin, yes my project is incomplete, but I have completed many major components--some of which actually work!"
+read temp
+clear
+echo "Of the three project options, I chose to do the hybrid project with two entities. "
+read temp
+clear
+echo "Let me show you my REST API..."
+read temp
+clear
+echo "Here, I've used postmant to test my API's... Unfortunately, I didn't have much time to properly build in many tests, but via the many requests I make, and a quick peak at their results, it will be clear that my api is functional."
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp
+clear
+echo "Hello, I'm going to guide you through my project with text! : )"
+read temp

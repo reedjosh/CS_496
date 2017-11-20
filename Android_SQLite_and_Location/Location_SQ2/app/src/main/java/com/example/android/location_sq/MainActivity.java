@@ -19,7 +19,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.location_track_activity);
 
         /* * Location Stuffs * */
         // Get Lat Lon TextViews...
@@ -222,7 +221,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                     // Update the current location...
 
                 } else {
-                    // TODO: handle location denied callback stuff
+                    ContentValues values = new ContentValues();
+                    values.put(LocationDBEntry.COLUMN_LATITUDE, 44.5);
+                    values.put(LocationDBEntry.COLUMN_LONGITUDE, -123.2);
+                    Log.i(mLogTag, "Location added to database.");
+                    mLocationDB.insert(LocationDBEntry.TABLE_NAME, null, values);
+                    mLocationAdapter.swapCursor(getAllLocations());
                     mLocationDeniedToast.show();
                 }
                 return;

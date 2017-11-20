@@ -65,13 +65,19 @@ class HikerHandler(webapp2.RequestHandler):
         if id:
             self._sendErr(403, "Error: A hike cannot be posted with an id.")
 
-        # Prevent duplicate numbered hiker...
-        #if Hiker.query(Hiker.number == body['']).get(): 
-        #    self._sendErr(403, "Error: A hiker of that numer already exists.")
 
         # If no errors, create the hiker...
+        hiker_dict = {}
         if not self.err:
-            new_hiker = Hiker(**body)
+            if 'name' in body:
+                hiker_dict['name'] = str(body['name'])
+            if 'height' in body:
+                hiker_dict['height'] = int(body['height'])
+            if 'hiking_history' in body:
+                hiker['hiking_history'] = list(body['hiking_history'])
+            if 'weight' in body:
+                hiker_dict['weight'] = int(body['weight'])
+            new_hiker = Hiker(**hiker_dict)
             new_hiker.put()
             self.response.write(new_hiker.toJsonStr())
 

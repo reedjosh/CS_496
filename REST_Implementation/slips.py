@@ -87,7 +87,7 @@ class SlipHandler(webapp2.RequestHandler):
 
             # Send an error if no slip found with said id.
             if not slip: 
-                self.sendErr(405, "Error: Bad slip id.")
+                self._sendErr(405, "Error: Bad slip id.")
 
             # If no error set, respond with slip info.
             if not self.err:
@@ -114,7 +114,7 @@ class SlipHandler(webapp2.RequestHandler):
         if not self.err:
             slip = getObj(id)
             if not slip: 
-                self.sendErr(405, "Error: Bad slip id.")
+                self._sendErr(405, "Error: Bad slip id.")
 
         # If no errors, get the body of the post.
         if not self.err:
@@ -138,7 +138,7 @@ class SlipHandler(webapp2.RequestHandler):
         if not self.err:
             slip = getObj(id)
             if not slip: 
-                self.sendErr(405, "Error: Bad slip id.")
+                self._sendErr(405, "Error: Bad slip id.")
 
         # If no errors, delete the slip.
         if not self.err:
